@@ -1,12 +1,14 @@
+from flask.json import jsonify
 import covid
 from flask import Flask
 from datetime import datetime
+from flask import request
 
 from covid import covid
-from flask_cors import CORS
+from flask_cors import CORS,cross_origin
 
 app = Flask(__name__)
-CORS(app)
+cors = CORS(app)
 
 @app.route("/")
 def fun():
@@ -15,7 +17,12 @@ def fun():
 
 @app.route("/login", methods=['POST'])
 def login():
-    return "login"
+    req = request.get_json()
+    email = req["email"]
+    password= req["password"]
+    response = jsonify({"data":email})
+    response.headers.add("Access-Control-Allow-Origin","*")
+    return response
 
 
 @app.route("/signup", methods=['POST'])
