@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { ViruscountComponent } from './viruscount/viruscount.component';
 import { CovidgraphComponent } from './covidgraph/covidgraph.component';
 import { StatedataComponent } from './statedata/statedata.component';
+import { HomeService } from './home.service';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { StatedataComponent } from './statedata/statedata.component';
     CommonModule,
     HomeRoutingModule,
     HttpClientModule
-  ]
+  ],
+  providers:[HomeService]
 })
 export class HomeModule { }

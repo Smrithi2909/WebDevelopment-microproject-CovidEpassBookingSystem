@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Home Page</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet"  type='text/css' media='screen' href="css/index.css">
+</head>
+<body>
+    <section class="main">
+        <div class="container-fluid">
+            <div class="row">
+            <div class="col-9">
+                <h1>Covid-19</h1>
+            </div>
+            <div class="col-md-3 col-sm-12">
+                
+                <div class="d-flex justify-content-center align-self-center">
+                    
+                    <button class="btn text-center home-log">Book Pass</button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section> 
+    <section class="mainCount">
+        <div class="container-fluid ">
+            <div class="row container-count">
+                <div class="col">
+                    
+                </div>
+                <div class="col-6 text-center">
+                    <h1>Total Confirmed : 79,45,975</h1>
+                </div>
+                <div class="col">
+                    
+                </div>
+            </div>
+            <div class="row container-values">
+                <div class="col text-center">
+            <h3>Active : <span style="color: #0ab3dd;">626192</span></h3>
+                </div>
+                <div class="col-3 text-center">
+                    <div class="col text-center">
+                        <h3>Recovered : <span style="color: #20655f;">7198877</span></h3>
+                    </div>
+                </div>
+                <div class="col text-center">
+                    <h3>Deceased : <span style="color: #e75151;">119538</span> </h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="container-fluid container-graphs">
+            <div class="row">
+                <div class="col">
+                <div id="curve_chart" style="width:100%;height:30rem;"></div>
+                </div>
+                <div class="col">
+                    <div id="curve_chart2" style="width:100%;height:30rem;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container-fluid container-states">
+            <div class="row">
+                <div class="col">
+                    <table class="table bord">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Sno</th>
+                                <th scope="col">State</th>
+                                <th scope="col">Confirmed Cases</th>
+                                <th scope="col">Discharged</th>
+                                <th scope="col">Deceased</th>
+                                <th scope="col">Total Cases</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Manipur</td>
+                                <td>35778</td>
+                                <td>30685</td>
+                                <td>489</td>
+                                <td>35778</td>
+                            </tr>
+                         
+                        </tbody>
+                    </table>
+                    
+                    
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section>
+
+<div class="container-fluid container-states">
+    <div class="row">
+        <div class="col text-center">
+           
+            <h3><strong>Last updated at : 11-05-2021</strong></h3>
+
+        </div>
+
+    </div>
+</div>
+
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+
+        <script type="text/javascript">
+            google.charts.load('current', { 'packages': ['corechart'] });
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ['Date', 'Cases'],
+                    ['2004', 1000],
+                    ['2005', 1170],
+                    ['2006', 660],
+                    ['2007', 1030],
+                    ['2004', 1000],
+                    ['2005', 1170],
+                    ['2006', 660],
+                    ['2007', 1030],
+
+
+                    ['2004', 1000],
+                    ['2005', 1170],
+                    ['2006', 660],
+                    ['2007', 1030],
+
+                    ['2004', 1000],
+                    ['2005', 1170],
+                    ['2006', 660],
+                    ['2007', 1030],
+
+                    ['2004', 1000],
+                    ['2005', 1170],
+                    ['2006', 660],
+                    ['2007', 1030],
+
+                    
+                    ['2004', 1000],
+                    ['2005', 1170],
+                    ['2006', 660],
+                    ['2007', 1030],
+
+                    
+                    ['2004', 1000],
+                    ['2005', 1170],
+                    ['2006', 660],
+                    ['2007', 1030],
+                    
+                    ['2004', 1000],
+                    ['2005', 1170],
+                    ['2006', 660],
+                    ['2007', 1030],
+            
+                ]);
+
+                var options = {
+                    title: 'Number of Cases',
+                    curveType: 'function',
+                    legend: { position: 'bottom' }
+                };
+
+                var chart = new google.visualization.AreaChart(document.getElementById('curve_chart'));
+                 var chart2 = new google.visualization.LineChart(document.getElementById('curve_chart2'));
+                chart.draw(data, options);
+                 chart2.draw(data, options);
+            }
+        </script>
+
+
+        
+
+
+
+</body>
+</html>
+
+
