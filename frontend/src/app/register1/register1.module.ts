@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {HttpClientModule} from '@angular/common/Http';
 
 
 
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     Register1RoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers:[RegisterserviceService]
   

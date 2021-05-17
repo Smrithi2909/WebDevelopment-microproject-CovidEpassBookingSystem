@@ -47,10 +47,15 @@ def signup():
     city=req["city"]
     state=req["state"]
     zip=req["zip"]
-    response = jsonify({"data":"User does not exists"})
-    a = db["users"].insert_one({"email":email,"password":password,"firstname":firstname,"phone":phone,"aadhar":aadhar,"address":address,"city":city,"state":state,"zip":zip})
+    response = jsonify({"data":"Could not add user"})
+    b = db["users"].find_one({"email":email})
+    a = None
+    if(b == None):
+         a = db["users"].insert_one({"email":email,"password":password,"firstname":firstname,"phone":phone,"aadhar":aadhar,"address":address,"city":city,"state":state,"zip":zip})
+    else:
+        response = jsonify({"data":"User already Exists"})
     if(a != None):
-        response = jsonify({"email":email,"passwrod":password,"firstname":firstname,"phone":phone,"aadhar":aadhar,"address":address,"city":city,"state":state,"zip":zip})    
+        response = jsonify({"email":email,"firstname":firstname,"phone":phone,"aadhar":aadhar,"address":address,"city":city,"state":state,"zip":zip})    
     return response
 
 
