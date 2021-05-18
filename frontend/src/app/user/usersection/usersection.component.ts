@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { UserserviceService } from '../userservice.service';
 
 @Component({
@@ -48,7 +50,7 @@ export class UsersectionComponent implements OnInit {
   textbox:string="";
   res:any;
 
-  constructor(private service:UserserviceService) { }
+  constructor(private service:UserserviceService, private route:Router) { }
 
   ngOnInit(): void {
     this.fun();
@@ -116,7 +118,9 @@ export class UsersectionComponent implements OnInit {
     };
     this.service.bookAPass(val).subscribe(data =>{
       if(data){
+        this.res= data;
         alert("booked");
+        this.route.navigate(["/confirm/info/"+this.res.id]);
       }      
     },error=>{
       console.log(error);

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ConfirmRoutingModule } from './confirm-routing.module';
 import { ConfirmComponent } from './confirm.component';
+import { HttpClientModule } from '@angular/common/Http';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { ConfirmComponent } from './confirm.component';
   ],
   imports: [
     CommonModule,
-    ConfirmRoutingModule
+    ConfirmRoutingModule,
+    HttpClientModule
   ]
 })
 export class ConfirmModule { }

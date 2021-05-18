@@ -1,10 +1,14 @@
+from bson.objectid import ObjectId
+from flask.helpers import send_from_directory
 from flask.json import jsonify
-import covid
+
 from flask import Flask
 from datetime import datetime
 from flask import request
+from flask_cors.core import ACL_ALLOW_HEADERS
 
 import pymongo
+import qrcode
 
 from covid import covid
 from flask_cors import CORS,cross_origin
@@ -64,7 +68,10 @@ def signup():
 def book():
     req = request.get_json();
     a=db["passes"].insert_one(req)
-    return {"purpose":req["purpose"]}
+    insertedId = str(a.inserted_id)
+    img = qrcode.make("http://localhost:4200/confirm/info/"+insertedId)
+    img.save("qrs/"+insertedId+".jpg")
+    return {"id":insertedId}
 
 @app.route("/mypass",methods=['POST'])
 def mypass():
@@ -74,6 +81,30 @@ def mypass():
     for i in a:
         res.append({"source":i["source"],"destination":i["destination"],"id":str(i["_id"])})
     return {"data":res}
+
+ 
+
+@app.route("/getqrs/<path:path>",methods=["GET"])
+def getqr(path):
+    return send_from_directory("qrs",path)
+
+
+@app.route("/getInfo/<id>",methods=['GET'])
+def info(id):
+    a  = db["passes"].find_one({"_id":ObjectId(id)})
+    res = {}
+    res["source"] = a["source"]
+    res["destination"] = a["destination"]
+    b = db["users"].find_one({"_id":ObjectId(a["id"])})
+    res["email"] = b["email"]
+    res["phone"] = b["phone"]
+    res["aadhar"] = b["aadhar"]
+    res["firstname"] = b["firstname"]
+    res["qr"] = str(a["_id"])+".jpg"
+    return res
+
+
+
 
 
 # ---------------------------------------------------------------------------------------------
