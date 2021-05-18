@@ -1,5 +1,6 @@
 import { typeWithParameters } from '@angular/compiler/src/render3/util';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class LoginboxComponent implements OnInit {
   email:string="";
   password:string="";
   res:any;
-  constructor(private service:LoginService) { }
+  constructor(private service:LoginService, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -36,7 +37,8 @@ export class LoginboxComponent implements OnInit {
         alert(this.res.data);
         return;
       }else{
-        alert("hi");
+       localStorage.setItem("userid",this.res.id);
+         this.router.navigate(['/user/mypass']);
         return;
       }
     }

@@ -31,7 +31,7 @@ def login():
     response = jsonify({"data":"User does not exists"})
     a = db["users"].find_one({"email":email,"password":password})
     if(a != None):
-        response = jsonify({"email":email,"passwrod":password})    
+        response = jsonify({"id":str(a['_id'])})    
     return response
 
 
@@ -57,6 +57,23 @@ def signup():
     if(a != None):
         response = jsonify({"email":email,"firstname":firstname,"phone":phone,"aadhar":aadhar,"address":address,"city":city,"state":state,"zip":zip})    
     return response
+
+
+
+@app.route("/bookpass",methods=['POST'])
+def book():
+    req = request.get_json();
+    a=db["passes"].insert_one(req)
+    return {"purpose":req["purpose"]}
+
+@app.route("/mypass",methods=['POST'])
+def mypass():
+    req = request.get_json()
+    a = db["passes"].find({"id":req['id']})
+    res = []
+    for i in a:
+        res.append({"source":i["source"],"destination":i["destination"],"id":str(i["_id"])})
+    return {"data":res}
 
 
 # ---------------------------------------------------------------------------------------------
