@@ -28,3 +28,34 @@ def region():
     d={"data":(data["data"]["regional"])}
 
     return d
+
+
+
+@covid.route("/cases", methods=['GET'])
+def cases():
+    r=re.get("https://api.rootnet.in/covid19-in/stats/history")
+    data=r.json()
+    res = []
+    for i in range(len(data['data'])):
+        tot = data['data'][i]["summary"]["total"]
+        day = data['data'][i]["day"]
+        res.append([day,tot])
+
+    d={"data":res}
+
+    return d
+
+
+@covid.route("/deaths", methods=['GET'])
+def deaths():
+    r=re.get("https://api.rootnet.in/covid19-in/stats/history")
+    data=r.json()
+    res = []
+    for i in range(len(data['data'])):
+        tot = data['data'][i]["summary"]["deaths"]
+        day = data['data'][i]["day"]
+        res.append([day,tot])
+
+    d={"data":res}
+
+    return d

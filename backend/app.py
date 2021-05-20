@@ -21,10 +21,10 @@ client = pymongo.MongoClient("mongodb://localhost:27017");
 db = client['epasssystem']
 
 
-sid = "ACb2478319927b01e5c8f4fe48a0ca9fda"
-auth = "722dc7f444d4c5a6cbbde48ab86af283"
+#sid = "ACb2478319927b01e5c8f4fe48a0ca9fda"
+#auth = ""
 
-client = Client(sid,auth)
+#client = Client(sid,auth)
 
  
 @app.route("/")
@@ -77,8 +77,8 @@ def book():
     a=db["passes"].insert_one(req)
     insertedId = str(a.inserted_id)
     body="Your refenece no is : "+insertedId+"\n Your pass has been booked"
-    msg = client.messages.create(to="whatsapp:+918019028884",from_="whatsapp:+14155238886",body=body)
-    print(msg.sid)
+    #msg = client.messages.create(to="whatsapp:+918019028884",from_="whatsapp:+14155238886",body=body)
+    #print(msg.sid)
 
     
     img = qrcode.make("http://localhost:4200/confirm/info/"+insertedId)
